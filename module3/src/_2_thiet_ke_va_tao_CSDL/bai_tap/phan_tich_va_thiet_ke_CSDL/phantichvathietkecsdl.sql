@@ -116,8 +116,8 @@ ALTER TABLE employees
 ADD reportTo int ;
 
 ALTER TABLE employees
-ADD CONSTRAINT employees_fk
-FOREIGN KEY (reportTo) REFERENCES employees(reportTo);
+ADD CONSTRAINT employees_fk_employees
+FOREIGN KEY (reportTo) REFERENCES employees(id_employess);
 
 ALTER TABLE employees
 ADD id_offices int ;
