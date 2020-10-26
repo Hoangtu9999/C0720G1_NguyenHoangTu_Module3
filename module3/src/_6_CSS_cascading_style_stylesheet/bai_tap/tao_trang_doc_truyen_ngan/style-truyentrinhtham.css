@@ -1,0 +1,68 @@
+#menu{
+    border: 1px solid black;
+    background-color: cadetblue;
+    border-radius: 5px;
+    background-image: url('image/2020_03_02_18_11_IMG_1321.JPG');
+}
+#content{
+    width: 100%;
+    height: 500px;
+    display: inline-block;
+}
+#content-left{
+    width: 56%;
+    height: auto;
+    padding-left: 200px;
+    margin-left: 5%;
+
+}
+#content-right{
+    width: 30%;
+    height: auto;
+
+    float: right;
+    margin-right: 5%;
+}
+#video{
+    margin-left: 10px;
+}
+.menu-content{
+    width: 100px;
+    height: 30px;
+    margin-left: 80px;
+    background-color: antiquewhite;
+}
+.menu-content:hover{
+    background-color: aqua;
+}
+.image{
+    width: 150px;
+    height: 100%;
+    display:inline-block;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+.image-content{
+    width: 150px;
+    height: 200px;
+}
+a{
+    text-decoration: none;
+    border-radius: 5px;
+}
+a:hover{
+    color: #ff0000;
+}
+li{
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+button{
+    margin-top: 10px;
+    margin-left: 12px;
+}
+h4{
+    color: cornflowerblue;
+    text-align: center;
+}
