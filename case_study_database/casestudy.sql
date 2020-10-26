@@ -186,4 +186,4 @@ where (((year(curdate()) - year(ngaySinh))  > 18) and ((year(curdate()) - year(n
 select k.hoTen ,count(h.idKhachHang),l.tenLoaiKhach from hopdong as h 
 join khachhang as k on h.idKhachHang = k.idKhachHang 
 join loaikhach as l on k.idLoaiKhach = l.idLoaiKhach 
-where l.tenLoaiKhach = 'Diamond';
+where l.tenLoaiKhach = 'Diamond' order by h.idKhachHang desc;
