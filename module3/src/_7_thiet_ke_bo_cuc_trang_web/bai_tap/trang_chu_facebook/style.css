@@ -1,0 +1,48 @@
+body{
+    font-family: Arial, "Times New Roman";
+    font-size: 12px;
+}
+#main{
+    width: 100%;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header{
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    background-color: black;
+    display: block;
+
+}
+#side-bar{
+    width: 25%;
+    min-height: 1000px;
+    top: 65px;
+    float: left;
+    position: fixed;
+    background-color: gold;
+}
+#content-left{
+    width: 48%;
+    min-height:1000px ;
+    float: left;
+    margin-left: 26%;
+    margin-top: 57px;
+    background-color: aqua;
+    padding-left: 10px;
+}
+#content-right{
+    width: 25%;
+    min-height: 1000px;
+    position: fixed;
+    top: 65px;
+    left: 75%;
+    background-color: blue;
+
+}
+.home-page{
+    color: white;
+}
