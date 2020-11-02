@@ -183,7 +183,76 @@ select * from NhanVien where (length(hoTen) >= 15) and (hoTen like 'T%' or 'P%' 
 select * from KhachHang 
 where (((year(curdate()) - year(ngaySinh))  > 18) and ((year(curdate()) - year(ngaySinh)) < 50)) and ((diaChi = 'Đà Nẵng' or'Huế')); 
 -- Câu 3
-select k.hoTen ,count(h.idKhachHang),l.tenLoaiKhach from hopdong as h 
+select k.hoTen ,count(h.idKhachHang) as soLanDatPhong,l.tenLoaiKhach from hopdong as h 
 join khachhang as k on h.idKhachHang = k.idKhachHang 
 join loaikhach as l on k.idLoaiKhach = l.idLoaiKhach 
 where l.tenLoaiKhach = 'Diamond' order by h.idKhachHang desc;
+-- câu 4
+select d.idDichVu,d.tenDichVu,d.dienTich,d.chiPhithue,l.tenLoaiDichVu from dichvu as d
+join loaidichvu as l on d.idLoaiDichVu = l.idLoaiDichVu where d.idDichVu = 1;
+-- câu 5
+select k.idKhachHang, k.hoTen,l.tenLoaiKhach,h.idHopDong,d.tenDichVu,h.ngayLamHopDong,h.ngayKetThuc,
+sum(d.chiPhithue+hopdongchitiet.soLuong*dichvudikem.gia) as tongTienPhaiTra from khachhang as k 
+left join loaikhach as l on k.idLoaiKhach = l.idLoaiKhach
+left join hopdong as h on k.idKhachHang = h.idKhachHang 
+left join dichvu as d on h.idDichVu = d.idDichVu 
+left join hopdongchitiet on h.idHopDong = hopdongchitiet.idHopDong
+left join dichvudikem on hopdongchitiet.idDichVuDiKem = dichvudikem.idDichVuDiKem
+group by h.idHopDong;
+
+-- câu 6
+select dichvu.idDichVu,dichvu.tenDichVu,dichvu.dienTich,dichvu.chiPhithue,loaidichvu.tenLoaiDichVu 
+from dichvu 
+join loaidichvu on dichvu.idLoaiDichVu = loaidichvu.idLoaiDichVu 
+where not exists(select hopdong.idDichVu from hopdong 
+where(hopdong.ngayLamHopDong between '2019-01-01' and '2019-03-31') and hopdong.idDichVu = dichvu.idDichVu);
+
+-- câu 7 
+select dichvu.idDichVu, dichvu.tenDichVu, dichvu.dienTich,dichvu.soNguoiToiDa,dichvu.chiPhithue,loaidichvu.tenLoaiDichVu from dichvu
+join loaidichvu on dichvu.idLoaiDichVu = loaidichvu.idLoaiDichVu 
+where exists(select hopdong.idHopDong  from hopdong where year(hopdong.ngayLamHopDong) = '2018' and hopdong.idDichVu = dichvu.idDichVu) 
+and not exists(select hopdong.idHopDong  from hopdong where year(hopdong.ngayLamHopDong) = '2019' and hopdong.idDichVu = dichvu.idDichVu);
+
+-- câu 8
+-- cách 1
+select distinct khachhang.hoTen from khachhang;
+-- cách 2
+select khachhang.hoTen from khachhang group by khachhang.hoTen;
+-- cách 3
+select hoTen from khachhang union select hoTen from khachhang;
+
+-- câu 9
+select month(hopdong.ngayKetThuc) as thang,count(idHopDong) as soLuongKhachHang  from hopdong 
+where (year(hopdong.ngayKetThuc) = '2019') group by month(hopdong.ngayKetThuc);
+
+-- câu 10
+select hopdong.idHopDong , hopdong.ngayLamHopDong, hopdong.ngayKetThuc ,hopdong.tienDatCoc,sum(hopdongchitiet.soLuong) as soLuongDichVu
+from hopdong
+left join hopdongchitiet on hopdong.idHopDong = hopdongchitiet.idHopDong group by hopdong.idHopDong;
+
+-- câu 11
+select 	d.idDichVuDiKem,d.tenDichVuDiKem,d.donVi,d.gia,d.trangThaiKhachHang from dichvudikem as d
+join hopdongchitiet as h on d.idDichVuDiKem = h.idDichVuDiKem
+join hopdong on h.idHopDong = hopdong.idHopDong
+join khachhang as k on hopdong.idKhachHang = k.idKhachHang
+join loaikhach as l on k.idLoaiKhach = l.idLoaiKhach
+where l.tenLoaiKhach = 'Diamond' and(k.diaChi in ('Đà nẵng','Huế'));
+
+-- câu 12
+Select hopdong.idHopDong, nhanvien.hoTen, khachhang.hoTen, khachhang.sdt, dichvu.tenDichVu,
+count(hopdongchitiet.idDichVuDiKem), 
+hopdong.tienDatCoc 
+from hopdong
+left join nhanvien on hopdong.idNhanVien = nhanvien.idNhanVien
+left join khachhang on hopdong.idHopDong = khachhang.idKhachHang
+left join dichvu on hopdong.idDichVu = dichvu.idDichVu
+left join hopdongchitiet on hopdong.idHopDong = hopdongchitiet.idHopDong
+left join dichvudikem on hopdongchitiet.idDichVuDiKem = dichvudikem.idDichVuDiKem
+where month(hopdong.ngayLamHopDong) in (10,11,12) and year(hopdong.ngayLamHopDong) = 2019
+and khachhang.idKhachHang not in (select hopdong.idKhachHang from hopdong where month(hopdong.ngayLamHopDong) in(1,2,3,4,5,6))
+group by khachhang.hoTen;
+
+-- câu 13	
+select dichvudikem.tenDichVuDiKem, sum(hopdongchitiet.soLuong) as 'tong' from dichvudikem
+join hopdongchitiet on dichvudikem.idDichVuDiKem = hopdongchitiet.idDichVuDiKem
+group by dichvudikem.idDichVuDiKem;
