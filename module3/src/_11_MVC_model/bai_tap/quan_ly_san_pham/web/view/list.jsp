@@ -16,6 +16,11 @@
 <p>
     <a href="/products?action=create">Create new customer</a>
 </p>
+<form action="/products?action=search" method="post">
+    <label>Tìm kiếm:</label>
+    <input type="text" name="search" id="search" >
+    <input type="submit" value="search">
+</form>
 <table border="1">
     <tr>
         <td>Name</td>

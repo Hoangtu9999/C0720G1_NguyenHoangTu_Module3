@@ -32,8 +32,31 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 deteteProdcut(request, response);
                 break;
+            case "search":
+                searchProdcutByName(request, response);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void searchProdcutByName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("search");
+        Product product = productService.findByName(name);
+
+        RequestDispatcher rd;
+        if (product == null) {
+            rd = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("product", product);
+            rd = request.getRequestDispatcher("view/search.jsp");
+        }
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

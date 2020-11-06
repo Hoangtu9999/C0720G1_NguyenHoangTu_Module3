@@ -12,7 +12,7 @@ public class ProductServiceImpl implements ProductService {
 
     static {
         productMap = new HashMap<>();
-        productMap.put(1, new Product(1, "tivi", "Đồ điện tử", 1000));
+        productMap.put(1, new Product(1, "tu lanh", "Đồ điện tử", 1000));
         productMap.put(2, new Product(2, "tivi", "Đồ điện tử", 1000));
         productMap.put(3, new Product(3, "tivi", "Đồ điện tử", 1000));
         productMap.put(4, new Product(4, "tivi", "Đồ điện tử", 1000));
@@ -43,5 +43,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void remove(int id) {
         productMap.remove(id);
+    }
+
+    @Override
+    public Product findByName(String name) {
+        for (int key : productMap.keySet()) {
+            if (productMap.get(key).getName().equals(name)) {
+                return productMap.get(key);
+            }
+        }
+        return null;
     }
 }
