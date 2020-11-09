@@ -24,6 +24,8 @@ public class UserServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -35,6 +37,8 @@ public class UserServlet extends HttpServlet {
                     break;
                 case "edit":
                     updateUser(request, response);
+                case "search":
+                    searchUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -42,8 +46,29 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    private void searchUser(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        String nameSearch = request.getParameter("search");
+        List<User> userList = userDAO.searchByCountry(nameSearch);
+        RequestDispatcher rd;
+        if (userList == null) {
+            rd = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("userList", userList);
+            rd = request.getRequestDispatcher("user/search.jsp");
+        }
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -60,12 +85,71 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "permision":
+                    addUserPermision(request, response);
+                    break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
+                    break;
+                case "test-use-tran":
+                    testUseTran(request, response);
+                    break;
                 default:
-                    listUser(request, response);
+                    //  listUserSortName(request, response);
+                    // listUser(request,response);
+                    listAllUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
+        }
+    }
+
+    private void listAllUser(HttpServletRequest request, HttpServletResponse response) {
+        List<User> userList = userDAO.findAllUser();
+
+        RequestDispatcher rd;
+        if (userList == null) {
+            rd = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("userList", userList);
+            rd = request.getRequestDispatcher("user/list.jsp");
+        }
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testUseTran(HttpServletRequest request, HttpServletResponse response) {
+        userDAO.insertUpdateUseTransaction();
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        userDAO.insertUpdateWithoutTransaction();
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("kien", "kienhoang@gmail.com", "vn");
+
+        int[] permision = {1, 2, 4};
+
+        userDAO.addUserTransaction(user, permision);
+    }
+
+    private void listUserSortName(HttpServletRequest request, HttpServletResponse response) {
+        List<User> listUser = userDAO.selectAllUsersByName();
+        request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -75,6 +159,7 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
+
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response)

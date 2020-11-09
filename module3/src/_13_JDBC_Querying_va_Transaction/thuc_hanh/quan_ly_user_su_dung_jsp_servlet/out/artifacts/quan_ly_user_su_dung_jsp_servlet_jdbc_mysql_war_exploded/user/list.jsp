@@ -12,7 +12,13 @@
         <a href="/users?action=create">Add New User</a>
     </h2>
 </center>
+
 <div align="center">
+    <form action="/users?action=search" method="post">
+        <label>Tìm kiếm:</label>
+        <input type="text" name="search">
+        <input type="submit" value="Search">
+    </form>
     <table border="1" cellpadding="5">
         <caption><h2>List of Users</h2></caption>
         <tr>
@@ -22,7 +28,7 @@
             <th>Country</th>
             <th>Actions</th>
         </tr>
-        <c:forEach var="user" items="${listUser}">
+        <c:forEach var="user" items="${userList}">
             <tr>
                 <td><c:out value="${user.id}"/></td>
                 <td><c:out value="${user.name}"/></td>
