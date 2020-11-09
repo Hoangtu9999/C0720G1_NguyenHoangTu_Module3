@@ -88,13 +88,48 @@ public class UserServlet extends HttpServlet {
                 case "permision":
                     addUserPermision(request, response);
                     break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
+                    break;
+                case "test-use-tran":
+                    testUseTran(request, response);
+                    break;
                 default:
-                    listUserSortName(request, response);
+                    //  listUserSortName(request, response);
+                    // listUser(request,response);
+                    listAllUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void listAllUser(HttpServletRequest request, HttpServletResponse response) {
+        List<User> userList = userDAO.findAllUser();
+
+        RequestDispatcher rd;
+        if (userList == null) {
+            rd = request.getRequestDispatcher("error-404.jsp");
+        } else {
+            request.setAttribute("userList", userList);
+            rd = request.getRequestDispatcher("user/list.jsp");
+        }
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void testUseTran(HttpServletRequest request, HttpServletResponse response) {
+        userDAO.insertUpdateUseTransaction();
+    }
+
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
+        userDAO.insertUpdateWithoutTransaction();
     }
 
     private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {

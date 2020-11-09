@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5aaa75ac-d1a6-4008-a310-67a3265e41ec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/config/CharsetFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/artifacts/quan_ly_users_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/quan_ly_users.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/config/CharsetFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/controllers/UserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/dao/IUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/services/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/src/com/codegym/utils/DBconnectionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/lib/jsp-api-2.1-6.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/lib/jstl-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/lib/jstl-impl-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/lib/mysql-connector-java-8.0.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/lib/servlet-api-2.5-6.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../_13_JDBC_Querying_va_Transaction/bai_tap/quan_ly_users/web/user/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/controllers/UserServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/controllers/UserServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/daos/IUserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/daos/IUserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/daos/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/WEB-INF/classes/com/codegym/daos/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/artifacts/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql_war_exploded/user/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/controllers/UserServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/controllers/UserServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/daos/IUserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/daos/IUserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/daos/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/out/production/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/com/codegym/daos/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/controllers/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/controllers/UserServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/daos/IUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/daos/IUserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/daos/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/src/com/codegym/daos/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/web/user/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../_12_jdbc_va_crud/bai_tap/quan_ly_user_su_dung_jsp_servlet_jdbc_mysql/web/user/list.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1jx0JWF9uUam6UuEJC1rXE6zowh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5aaa75ac-d1a6-4008-a310-67a3265e41ec" name="Default Changelist" comment="" />
+      <created>1604730363422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604730363422</updated>
+      <workItem from="1604730364622" duration="22000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+</project>

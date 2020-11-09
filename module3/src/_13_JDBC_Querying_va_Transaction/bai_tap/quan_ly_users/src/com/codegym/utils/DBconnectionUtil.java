@@ -11,7 +11,7 @@ public class DBconnectionUtil {
     private static final String DATABASE = "demo";
     private static final String PORT = "3306";
 
-    private static Connection connection;
+    private static Connection conn;
     private String useName;
 
 
@@ -24,12 +24,12 @@ public class DBconnectionUtil {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            connection = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE, USER_NAME, PASSWORD);
+            conn = DriverManager.getConnection("jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE, USER_NAME, PASSWORD);
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-        return connection;
+        return conn;
     }
 
 
@@ -38,8 +38,8 @@ public class DBconnectionUtil {
      */
     public static void close() {
         try {
-            if (connection != null) {
-                connection.close();
+            if (conn != null) {
+                conn.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -2,7 +2,9 @@ package com.codegym.daos;
 
 import com.codegym.models.User;
 
+import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +13,7 @@ public class UserDAO implements IUserDAO {
     private String jdbcUsername = "root";
     private String jdbcPassword = "sa123";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
-            " (?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO users(name, email, country) VALUES(?, ?, ?);";
 
     private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
@@ -151,6 +152,7 @@ public class UserDAO implements IUserDAO {
         }
         return users;
     }
+
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
@@ -220,19 +222,20 @@ public class UserDAO implements IUserDAO {
         // try-with-resource statement will auto close the connection.
         try (Connection connn = getConnection();
              PreparedStatement ps = connn.prepareStatement(SEARCH_COUNTRY_SQL)) {
-            ps.setString(1,country);
+            ps.setString(1, "%" + country + "%");
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
-                User user = new User(rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getString("country"));
+            while (rs.next()) {
+                User user = new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"), rs.getString("country"));
                 listUser.add(user);
             }
         } catch (SQLException e) {
             printSQLException(e);
-        }finally {
+        } finally {
             getConnection().close();
         }
         return listUser;
     }
+
     @Override
 
     public void addUserTransaction(User user, int[] permisions) {
@@ -303,9 +306,155 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void insertUpdateWithoutTransaction() {
-        
+
+        try (Connection conn = getConnection();
+
+             Statement statement = conn.createStatement();
+
+             PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+
+             PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
+
+
+            statement.execute(SQL_TABLE_DROP);
+
+            statement.execute(SQL_TABLE_CREATE);
+
+
+            // chạy các lệnh chèn
+            psInsert.setString(1, "Quynh");
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+
+            psInsert.setString(1, "Ngan");
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            psInsert.execute();
+
+
+            // Chạy danh sách các lệnh cập nhật
+
+
+            //dòng dưới đây gây ra lỗi, giao dịch thử nghiệm
+
+            // org.postgresql.util.PSQLException: No value specified for parameter 1.
+
+            //psUpdate.setBigDecimal(2, new BigDecimal(999.99));
+
+
+            //fix bug
+            psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+
+            psUpdate.setString(2, "Quynh");
+
+            psUpdate.execute();
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
     }
 
+    @Override
+
+    public void insertUpdateUseTransaction() {
+
+        try (Connection conn = getConnection();
+
+             Statement statement = conn.createStatement();
+
+             PreparedStatement psInsert = conn.prepareStatement(SQL_INSERT);
+
+             PreparedStatement psUpdate = conn.prepareStatement(SQL_UPDATE)) {
+
+            statement.execute(SQL_TABLE_DROP);
+
+            statement.execute(SQL_TABLE_CREATE);
+
+            // start transaction block
+
+            conn.setAutoCommit(false); // default true
+
+            // Run list of insert commands
+
+            psInsert.setString(1, "Quynh");
+
+            psInsert.setBigDecimal(2, new BigDecimal(10));
+
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+
+            psInsert.execute();
+
+
+            psInsert.setString(1, "Ngan");
+
+            psInsert.setBigDecimal(2, new BigDecimal(20));
+
+            psInsert.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+
+            psInsert.execute();
+
+
+            // Run list of update commands
+
+
+            // below line caused error, test transaction
+
+            // org.postgresql.util.PSQLException: No value specified for parameter 1.
+
+            psUpdate.setBigDecimal(2, new BigDecimal(999.99));
+
+
+            //psUpdate.setBigDecimal(1, new BigDecimal(999.99));
+
+            psUpdate.setString(2, "Quynh");
+
+            psUpdate.execute();
+
+
+            // end transaction block, commit changes
+
+            conn.commit();
+
+            // good practice to set it back to default true
+
+            conn.setAutoCommit(true);
+
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    @Override
+    public List<User> findAllUser() {
+        List<User> userList = new ArrayList<>();
+        String query = "{CALL find_all_list_user()}";
+        try (Connection conn = getConnection();
+             CallableStatement callableStatement = conn.prepareCall(query)
+        ) {
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("id"), rs.getString("name"),
+                        rs.getString("email"), rs.getString("country"));
+                userList.add(user);
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+
+        return userList;
+    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
